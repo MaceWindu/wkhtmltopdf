@@ -763,8 +763,8 @@ def check_msvc(config):
         error("perl does not seem to be installed.")
 
     nsis = get_registry_value(r'SOFTWARE\NSIS')
-    if not nsis or not exists(os.path.join(nsis, 'makensis.exe')):
-        error("NSIS does not seem to be installed.")
+#    if not nsis or not exists(os.path.join(nsis, 'makensis.exe')):
+#        error("NSIS does not seem to be installed.")
 
 def build_msvc(config, basedir):
     msvc, arch = rchop(config, '-dbg').split('-')
@@ -819,10 +819,10 @@ def build_msvc(config, basedir):
     if config.endswith('-dbg'):
         return
 
-    makensis = os.path.join(get_registry_value(r'SOFTWARE\NSIS'), 'makensis.exe')
-    os.chdir(os.path.join(basedir, '..'))
-    shell('"%s" /DVERSION=%s /DSIMPLE_VERSION=%s /DTARGET=%s /DMSVC=%s /DARCH=%s wkhtmltox.nsi' % \
-            (makensis, version, nsis_version(simple_version), config, reg_ver, arch))
+#    makensis = os.path.join(get_registry_value(r'SOFTWARE\NSIS'), 'makensis.exe')
+#    os.chdir(os.path.join(basedir, '..'))
+#    shell('"%s" /DVERSION=%s /DSIMPLE_VERSION=%s /DTARGET=%s /DMSVC=%s /DARCH=%s wkhtmltox.nsi' % \
+#            (makensis, version, nsis_version(simple_version), config, reg_ver, arch))
 
 # ------------------------------------------------ MinGW-W64 Cross Environment
 
@@ -871,8 +871,8 @@ def build_mingw64_cross(config, basedir):
         return
 
     os.chdir(os.path.join(basedir, '..'))
-    shell('makensis -DVERSION=%s -DSIMPLE_VERSION=%s -DTARGET=%s -DMINGW -DARCH=%s wkhtmltox.nsi' % \
-            (version, nsis_version(simple_version), config, rchop(config, '-dbg').split('-')[-1]))
+#    shell('makensis -DVERSION=%s -DSIMPLE_VERSION=%s -DTARGET=%s -DMINGW -DARCH=%s wkhtmltox.nsi' % \
+#            (version, nsis_version(simple_version), config, rchop(config, '-dbg').split('-')[-1]))
 
 # -------------------------------------------------- Linux schroot environment
 
